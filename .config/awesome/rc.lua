@@ -2,9 +2,6 @@
 --           Misaka !MiKoto.HE2            --
 ---------------------------------------------
 
-
--- Required Libraries
-
 local gears           = require("gears")
 local awful           = require("awful")
 awful.rules           = require("awful.rules")
@@ -14,10 +11,9 @@ local beautiful       = require("beautiful")
 local naughty         = require("naughty")
 local vicious         = require("vicious")
 local scratch         = require("scratch")
--- local perceptive      = require("perceptive")
 
 
--- Run once function
+-- Run once
 
 function run_once(cmd)
   findme = cmd
@@ -36,13 +32,12 @@ run_once("/home/lucy/.config/awesome/trayer.sh")
 run_once("xfce4-power-manager")
 run_once("wicd-client")
 awful.util.spawn_with_shell("sudo /etc/init.d/NetworkManager stop")
---run_once("export GTK2_RC_FILES="/home/lucy/.gtkrc-2.0")
--- Localization
 
 os.setlocale(os.getenv("LANG"))
 
 
 -- Error Handling
+-- Stolen from 'blackburn'
 
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -82,13 +77,8 @@ beautiful.init(active_theme .. "/theme.lua")
 terminal = "urxvtc"
 editor = os.getenv("EDITOR")
 editor_cmd = terminal .. " -e " .. editor
-gui_editor = "gvim"
+gui_editor = "sublime"
 browser = "firefox"
-mail = terminal .. " -e mutt "
-chat = terminal .. " -e irssi "
-tasks = terminal .. " -e htop "
-wifi = terminal .. " -e sudo wifi-menu "
-musicplr = terminal .. " -g 130x34-320+16 -e ncmpcpp "
 
 modkey = "Mod4"
 altkey = "Mod1"
@@ -127,7 +117,6 @@ programs = {
    { "Browser", "firefox" },
    { "editor", "/home/lucy/software/subLemon/subLemon_text" },
    { "irc", "quasselclient" },
-   { "tabitha", "urxvt -e zsh -c ssh -p 443 countbisquit@tabitha.stormbit.net" },
 }
 places = {
    { "home", "urxvt -e zsh -c ranger /home/lucy" },
@@ -137,20 +126,7 @@ places = {
    { "anime//alice",  "urxvt -e zsh -c ranger /mnt/animealice"  },
    { "music//alice",  "urxvt -e zsh -c ranger /mnt/musicalice"  },
 }
--- mygraphics = {
---    { "gimp" , "gimp" },
---    { "dia", "dia" },
--- }
--- myoffice = {
- --   { "writer" , "lowriter" },
-  --  { "impress" , "loimpress" },
--- }
--- mysystem = {
---    { "appearance" , "lxappearance" },
---    { "cleaning" , "bleachbit" },
---    { "powertop" , terminal .. " -e sudo powertop " },
---    { "task manager" , tasks }
--- }
+
 mymainmenu = awful.menu({ items = {
             { "programs" , programs },
             { "places" , places },
@@ -163,18 +139,19 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
 
 
--- Wibox
+-- Panel
 
 -- Colours
 coldef  = "</span>"
 white  = "<span color='#d7d7d7'>"
-gray = "<span color='#7661CF'>"
+gray = "<span color='#FF8FB4'>"
 
 
 -- Textclock widget
 mytextclock = awful.widget.textclock(white .. "%A %d %B, %H:%M" .. coldef)
 
--- attached calendar
+-- attached calendar 
+-- also taken from Blackburn. Broken.
 local os = os
 local string = string
 local table = table
@@ -182,7 +159,7 @@ local util = awful.util
 
 char_width = nil
 text_color = theme.fg_normal or "#FFFFFF"
-today_color = theme.taglist_fg_focus or "#7661CF"
+today_color = theme.taglist_fg_focus or "#FF8FB4"
 calendar_width = 21
 
 local calendar = nil
@@ -302,60 +279,8 @@ mytextclock:connect_signal("mouse::leave", remove_calendar)
 mytextclock:buttons(util.table.join( awful.button({ }, 1, function() add_calendar(-1) end),
                                      awful.button({ }, 3, function() add_calendar(1) end)))
 
--- GMail widget
--- you need  a .netrc file in your home directory filled with this:
--- machine mail.google.com login YOUR_MAIL password YOUR_PASS
-mygmail = wibox.widget.textbox()
-gmail_t = awful.tooltip({ objects = { mygmail },})
-notify_shown = false
-vicious.register(mygmail, vicious.widgets.gmail,
- function (widget, args)
-  gmail_t:set_text(args["{subject}"])
-  gmail_t:add_to_object(mygmail)
-  notify_title = ""
-  notify_text = ""
-  if (args["{count}"] > 0 ) then
-    if (notify_shown == false) then
-      -- Italian localization
-      -- can be a stub for your own localization
-      if (args["{count}"] == 1) then
-          if language:find("it_IT") ~= nil
-          then
-              notify_title = "Hai un nuovo messaggio"
-          else
-              notify_title = "You got a new mail"
-          end
-          notify_text = '"' .. args["{subject}"] .. '"'
-      else
-          if language:find("it_IT") ~= nil
-          then
-                notify_title = "Hai " .. args["{count}"] .. " nuovi messaggi"
-                notify_text = 'Ultimo: "' .. args["{subject}"] .. '"'
-          else
-                notify_title = "You got " .. args["{count}"] .. " new mails"
-                notify_text = 'Last one: "' .. args["{subject}"] .. '"'
-          end
-      end
-      naughty.notify({
-          title = notify_title,
-          text = notify_text,
-          timeout = 7,
-          position = "top_left",
-          icon = beautiful.widget_mail_notify,
-          fg = beautiful.taglist_fg_focus,
-          bg = beautiful.bg_normal
-      })
-      notify_shown = true
-    end
-    return gray .. " Mail " .. coldef .. white .. args["{count}"] .. " " .. coldef
-  else
-    notify_shown = false
-    return ''
-  end
-end, 60)
-mygmail:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(mail, false) end)))
 
--- Mpd widget
+-- MPD widget
 mpdwidget = wibox.widget.textbox()
 mpdwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplr) end)))
 curr_track = nil
@@ -438,8 +363,8 @@ function (widget, args)
   elseif (args[2] <= 10 and batstate() == 'Discharging') then
     baticon:set_image(beautiful.widget_battery_low)
     naughty.notify({
-      text = "attacca il cavo!",
-      title = "Carica bassa",
+      text = "Plug in soon!",
+      title = "Low battery",
       position = "top_right",
       timeout = 1,
       fg="#ffffff",
@@ -492,7 +417,7 @@ end, 10)
 netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(wifi) end)))
 
 
--- Separators
+-- Separator and brackets
 spr = wibox.widget.textbox(' ')
 leftbr = wibox.widget.textbox(white .. ' [' .. coldef)
 rightbr = wibox.widget.textbox(white .. '] ' .. coldef)
@@ -500,7 +425,6 @@ rightbr = wibox.widget.textbox(white .. '] ' .. coldef)
 
 -- Layout
 
--- Create a wibox for each screen and add it
 mywibox = {}
 mypromptbox = {}
 mylayoutbox = {}
@@ -568,6 +492,8 @@ for s = 1, screen.count() do
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s, height = 12 })
 
+-- Wibox layout 
+
     -- Widgets that are aligned to the upper left
     local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(spr)
@@ -578,6 +504,7 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the upper right
     local right_layout = wibox.layout.fixed.horizontal()
+-- System Tray [Disabled]
 --  if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(spr)
     right_layout:add(mpdwidget)
@@ -588,8 +515,7 @@ for s = 1, screen.count() do
     right_layout:add(batwidget)
     right_layout:add(spr)
     right_layout:add(mytextclock)
---    right_layout:add(spr)
-    -- Now bring it all together (with the tasklist in the middle)
+-- Task List in middle of layouts
     local layout = wibox.layout.align.horizontal()
     layout:set_left(left_layout)
     layout:set_middle(mytasklist[s])
