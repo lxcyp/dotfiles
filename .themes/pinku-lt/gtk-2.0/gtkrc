@@ -9,7 +9,7 @@
 #  base[PRELIGHT] is the unchecked base color
 #  base[SELECTED] is the checked base color
 #  base[ACTIVE] is the unchecked base color when pressed
-gtk-theme-name="Pinku"
+gtk-theme-name="Pinku-lt"
 # ===[ scales ]===
 #  bg[NORMAL] is slider color
 #  bg[PRELIGHT] is slider prelight color
@@ -20,7 +20,7 @@ gtk-theme-name="Pinku"
 #  bg[NORMAL] is trough color
 #  bg[SELECTED] is fill color
 
-gtk_color_scheme = "fg_color:#dddddd\nbg_color:#1b1b1b\nbase_color:#222222\ntext_color:#dddddd\nselected_bg_color:#FF8FB4\nselected_fg_color:#FFFFFF\ntooltip_fg_color:#EEEEEE\ntooltip_bg_color:#222222\nlink_color:#FF8FB4"
+gtk_color_scheme = "fg_color:#7c7c7c\nbg_color:#FFFFFF\nbase_color:#FFFFFF\ntext_color:#7c7c7c\nselected_bg_color:#FF8FB4\nselected_fg_color:#7c7c7c\ntooltip_fg_color:#7c7c7c\ntooltip_bg_color:#FFFFFF\nlink_color:#FF8FB4"
 gtk-icon-sizes = "panel-menu=24,24:panel=22,22:gtk-button=16,16:gtk-large-toolbar=22,22"
 
 gtk-auto-mnemonics = 1
@@ -80,7 +80,7 @@ style "theme-default" {
   WnckTasklist::fade-opacity      = 0.5 # final opacity
 
   #set to the same as roundness, used for better hotspot selection of tabs
-  GtkNotebook::tab-curvature = 2.5
+  GtkNotebook::tab-curvature = 1
   GtkNotebook::tab-overlap   = 3
 
   GtkOptionMenu  ::indicator-size    = { 11, 5 }
@@ -116,13 +116,13 @@ style "theme-default" {
   ythickness = 1
 
   fg[NORMAL]       	=  @fg_color
-  fg[ACTIVE]       	=  @fg_color # inactive tab text, checkboxes' labels and Togglebutton's labels
+  fg[ACTIVE]       	=  shade (1.2, @selected_fg_color) # inactive tab text, checkboxes' labels and Togglebutton's labels
   fg[PRELIGHT]     	=  @fg_color
   fg[SELECTED]     	=  @selected_fg_color
   fg[INSENSITIVE]  	=  shade (1.5, @bg_color)
 
   bg[NORMAL]       	=  @bg_color
-  bg[ACTIVE]        =  shade (0.975, @bg_color) # inactive tab color
+  bg[ACTIVE]        =  @bg_color # inactive tab color
   bg[PRELIGHT]      =  mix (0.85, shade (1.1, @bg_color), @selected_bg_color)
   bg[SELECTED]      =  @selected_bg_color
   bg[INSENSITIVE]  	=  shade (1.03, @bg_color)
@@ -134,7 +134,7 @@ style "theme-default" {
   base[INSENSITIVE]	=  shade (0.95, @bg_color)
 
   text[NORMAL]     	=  @text_color
-  text[ACTIVE]      =  @selected_fg_color # text color for inactive selected items
+  text[ACTIVE]      =  shade (0.95, @selected_fg_color) # text color for inactive selected items
   text[PRELIGHT]   	=  @text_color
   text[SELECTED]   	=  @selected_fg_color
   text[INSENSITIVE]	=  shade (0.5, @fg_color)
@@ -146,18 +146,18 @@ style "theme-default" {
 
         focus_color         = @selected_bg_color
 
-        glazestyle          = 3         # [ 0   ] (0) Flat,         (1) Curved,     (2) Concave,        (3) Top Curved, (4) Beryl
-        glowstyle           = 4         # [ 0   ] (0) Top,          (1) Bottom,     (2) Top & Bottom,   (3) Horizontal, (4) Centered
-        lightborderstyle    = 1         # [ 0   ] (0) Top,          (1) All sides
-        listviewheaderstyle = 1         # [ 0   ] (0) Flat,         (1) Glassy,     (2) Raised
-        listviewstyle       = 2         # [ 0   ] (0) NULL,         (1) Dots,       (2) Line
+        glazestyle          = 0         # [ 0   ] (0) Flat,         (1) Curved,     (2) Concave,        (3) Top Curved, (4) Beryl
+        glowstyle           = 0         # [ 0   ] (0) Top,          (1) Bottom,     (2) Top & Bottom,   (3) Horizontal, (4) Centered
+        lightborderstyle    = 0         # [ 0   ] (0) Top,          (1) All sides
+        listviewheaderstyle = 0         # [ 0   ] (0) Flat,         (1) Glassy,     (2) Raised
+        listviewstyle       = 0         # [ 0   ] (0) NULL,         (1) Dots,       (2) Line
         menustyle           = 0         # [ 0   ] (0) No VStripe,   (1) VStripe
-        menuitemstyle       = 1         # [ 0   ] (0) Flat,         (1) Glassy,     (2) Striped
-        menubarstyle        = 2         # [ 0   ] (0) Flat,         (1) Glassy,     (2) Gradient,       (3) Striped
+        menuitemstyle       = 0         # [ 0   ] (0) Flat,         (1) Glassy,     (2) Striped
+        menubarstyle        = 0         # [ 0   ] (0) Flat,         (1) Glassy,     (2) Gradient,       (3) Striped
         menubaritemstyle    = 0         # [ 0   ] (0) MenuItem,     (1) Button
         progressbarstyle    = 1         # [ 1   ] (0) NULL,         (1) Stripes,    (2) Cells
-        reliefstyle         = 2         # [ 2   ] (0) Flat,         (1) Inset,      (2) Shadow
-        sliderstyle         = 1         # [ 0   ] (0) NULL,         (1) Handles
+        reliefstyle         = 0         # [ 2   ] (0) Flat,         (1) Inset,      (2) Shadow
+        sliderstyle         = 0         # [ 0   ] (0) NULL,         (1) Handles
         stepperstyle        = 0         # [ 0   ] (0) Classic,      (1) Unified
         toolbarstyle        = 0         # [ 0   ] (0) Flat,         (1) Glassy
 
@@ -166,12 +166,12 @@ style "theme-default" {
         highlight_shade     = 1.0       # [ 1.1 ] ( 0.01 ) ( 0 - 2 )
         lightborder_shade   = 1.5       # [ 1.1 ] ( 0.01 ) ( 0 - 2 )
         roundness           = 2         # [ 1   ] ( 1.00 ) ( 0 - 8 )
-        gradient_shades     = { 1.125, 1.05, 1.0, 0.875 }
+#        gradient_shades     = { 1.125, 1.05, 1.0, 0.875 }
   }
 
-  color["menu_bg_color"] 	= "#1b1b1b"
+  color["menu_bg_color"] 	= "#FFFFFF"
   color["menu_fg_color"] 	= "#cccccc"
-  color["widget_bg_color"] 	= "#333333"
+  color["widget_bg_color"] 	= "#FFFFFF"
 }
 
 style "test" = "theme-default" {
@@ -226,8 +226,8 @@ style "theme-scrollbar" = "theme-default" {
   GtkScrollbar::trough-border	= 1
   GtkScrollbar::slider-width	= 5
 
-  bg[SELECTED] = "#121212"
-  bg[NORMAL]   = "#121212"
+  bg[SELECTED] = "#CFCFCF"
+  bg[NORMAL]   = "#CFCFCF"
   engine "murrine"
   {
         roundness       = 8
@@ -259,7 +259,8 @@ style "theme-handlebox" = "theme-default" {
 style "theme-scale" = "theme-default" {
   bg[NORMAL]     = @widget_bg_color
   bg[PRELIGHT]   = shade (1.15, @widget_bg_color)
-  base[SELECTED] = mix (0.5, shade(1.15, @bg_color), @selected_bg_color)
+#  base[SELECTED] = mix (0.5, shade(1.15, @bg_color), @selected_bg_color)
+  base[SELECTED] = @selected_bg_color
   base[NORMAL]   = shade(0.88, @bg_color)
 }
 

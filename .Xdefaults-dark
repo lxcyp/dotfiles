@@ -1,0 +1,63 @@
+URxvt.depth: 32
+URxvt.background: #181818
+URxvt.scrollBar: false
+URxvt.font: xft:Tewi:pixelsize=9
+URxvt.boldFont: xft:Tewi:pixelsize=9
+URxvt*termName: rxvt-256color
+URxvt.perl-ext-common: default, matcher
+URxvt.urlLauncher: /usr/bin/firefox
+URxvt.matcher.button: 1
+URxvt.colorUL: #FF8FB4
+*background: #2D2D2D
+! *foreground: #AAAAAA
+*cursorColor: #FF8FB4
+
+*foreground: #979797
+
+! black
+*color0: #0c0c0c
+
+! bright_black
+*color8: #141414
+
+! red
+*color1: #57514a
+
+! bright_red
+*color9: #9c8773
+
+! green
+*color2: #31645d
+
+! bright_green
+*color10: #5aa994
+
+! yellow
+*color3: #44644a
+
+! bright_yellow
+*color11: #7aa973
+
+! blue
+*color4: #443d71
+
+! bright_blue
+*color12: #7a66b5
+
+! magenta
+*color5: #FF8FB4
+
+! bright_magenta
+*color13: #9c6694
+
+! cyan
+*color6: #315171
+
+! bright_cyan
+*color14: #5a87b5
+
+! white
+*color7: #979797
+
+! bright_white
+*color15: #afafaf

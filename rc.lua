@@ -1,6 +1,6 @@
---          Pinku-light Awesome Config           --
---              Misaka !MiKoto.HE2               --
----------------------------------------------------
+--          Pinku Awesome Config           --
+--           Misaka !MiKoto.HE2            --
+---------------------------------------------
 
 local gears           = require("gears")
 local awful           = require("awful")
@@ -69,7 +69,7 @@ home = os.getenv("HOME")
 confdir = home .. "/.config/awesome"
 scriptdir = confdir .. "/scripts/"
 themes = confdir .. "/themes"
-active_theme = themes .. "/pinku-lt"
+active_theme = themes .. "/pinku"
 language = string.gsub(os.getenv("LANG"), ".utf8", "")
 
 beautiful.init(active_theme .. "/theme.lua")
@@ -143,7 +143,7 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 
 -- Colours
 coldef  = "</span>"
-white  = "<span color='#7c7c7c'>"
+white  = "<span color='#d7d7d7'>"
 gray = "<span color='#FF8FB4'>"
 
 
@@ -158,7 +158,7 @@ local table = table
 local util = awful.util
 
 char_width = nil
-text_color = theme.fg_normal
+text_color = theme.fg_normal or "#FFFFFF"
 today_color = theme.taglist_fg_focus or "#FF8FB4"
 calendar_width = 21
 
@@ -515,7 +515,6 @@ for s = 1, screen.count() do
     right_layout:add(batwidget)
     right_layout:add(spr)
     right_layout:add(mytextclock)
-    right_layout:add(spr)
 -- Task List in middle of layouts
     local layout = wibox.layout.align.horizontal()
     layout:set_left(left_layout)
