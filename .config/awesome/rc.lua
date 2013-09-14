@@ -507,13 +507,14 @@ for s = 1, screen.count() do
 -- System Tray [Disabled]
 --  if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(spr)
-    right_layout:add(mpdwidget)
     right_layout:add(cpuwidget)
     right_layout:add(memwidget)
     right_layout:add(nnetwidget)
     right_layout:add(volumewidget)
     right_layout:add(batwidget)
     right_layout:add(spr)
+--    right_layout:add(mpdwidget)
+--    right_layout:add()
     right_layout:add(mytextclock)
     right_layout:add(spr)
 -- Task List in middle of layouts
