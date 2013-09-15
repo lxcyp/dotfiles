@@ -1,11 +1,17 @@
 URxvt.depth: 32
 URxvt.background: #181818
 URxvt.scrollBar: false
-URxvt.font: xft:Tewi:pixelsize=9
-URxvt.boldFont: xft:Tewi:pixelsize=9
+URxvt.font: xft:Tewi:pixelsize=9,\
+            [codeset=JISX0208]xft:Kochi Gothic:pixelsize=9:antialias=false,\
+            [codeset=KSC5601]xft:Baekmuk Dotum:pixelsize=9:antialias=false
+URxvt.boldFont: xft:Tewi:pixelsize=9,\
+                [codeset=JISX0208]xft:Kochi Gothic:pixelsize=11,\
+                [codeset=KSC5601]xft:Baekmuk Dotum:pixelsize=11:antialias=false
+
 URxvt*termName: rxvt-256color
-URxvt.perl-ext-common: default, matcher
-URxvt.urlLauncher: /usr/bin/firefox
+URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
+URxvt.url-select.launcher: firefox
+URxvt.url-select.underline: true
 URxvt.matcher.button: 1
 URxvt.colorUL: #FF8FB4
 
