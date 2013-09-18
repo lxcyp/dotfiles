@@ -1,4 +1,4 @@
---             "Miku" Awesome Config             --
+--          Pinku-light Awesome Config           --
 --              Misaka !MiKoto.HE2               --
 ---------------------------------------------------
 
@@ -69,7 +69,7 @@ home = os.getenv("HOME")
 confdir = home .. "/.config/awesome"
 scriptdir = confdir .. "/scripts/"
 themes = confdir .. "/themes"
-active_theme = themes .. "/miku"
+active_theme = themes .. "/pinku-lt"
 language = string.gsub(os.getenv("LANG"), ".utf8", "")
 
 beautiful.init(active_theme .. "/theme.lua")
@@ -144,7 +144,7 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 -- Colours
 coldef  = "</span>"
 white  = "<span color='#7c7c7c'>"
-gray = "<span color='#429AA7'>"
+gray = "<span color='#FF8FB4'>"
 
 
 -- Textclock widget
@@ -159,7 +159,7 @@ local util = awful.util
 
 char_width = nil
 text_color = theme.fg_normal
-today_color = theme.taglist_fg_focus or "#429AA7"
+today_color = theme.taglist_fg_focus or "#FF8FB4"
 calendar_width = 21
 
 local calendar = nil
@@ -306,16 +306,16 @@ end, 1)
 
 -- Net widget
 nnetwidget = wibox.widget.textbox()
-vicious.register(nnetwidget, vicious.widgets.net, '<span color="#429AA7">↓</span> <span>${wlan0 down_kb}</span><span color="#429AA7"> ↑</span> <span>${wlan0 up_kb} </span>', 3)
+vicious.register(nnetwidget, vicious.widgets.net, '<span color="#FF8FB4">↓</span> <span>${wlan0 down_kb}</span><span color="#FF8FB4"> ↑</span> <span>${wlan0 up_kb} </span>', 3)
 nnetwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
 
 -- CPU widget
 cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, '<span color="#429AA7">⮦</span> $1% ', 3)
+vicious.register(cpuwidget, vicious.widgets.cpu, '<span color="#FF8FB4">⮦</span> $1% ', 3)
 
 -- MEM widget
 memwidget = wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, '<span color="#429AA7">⮡</span> $2MB ', 13)
+vicious.register(memwidget, vicious.widgets.mem, '<span color="#FF8FB4">⮡</span> $2MB ', 13)
 
 -- Battery widget
 baticon = wibox.widget.imagebox()
@@ -390,7 +390,7 @@ function (widget, args)
       end
   else volicon:set_image(beautiful.widget_vol_mute) 
   end
-  return '<span color="#429AA7">⮞ </span><span>' .. args[1] .. '% <span color="#429AA7">⮏ </span></span>'
+  return '<span color="#FF8FB4">⮞ </span><span>' .. args[1] .. '% <span color="#FF8FB4">⮏ </span></span>'
 end, 1, "Master")
 
 -- Net checker widget
